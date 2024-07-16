@@ -1,0 +1,71 @@
+public class LeadController {
+    public static void Country(List<Lead> leadList){
+        for(Lead ld:leadList){
+            if(ld.country__c=='United States'){
+                if(ld.Phone != null && ld.Phone.length() != 10){
+                    System.debug(ld.Phone.length());
+                    ld.Phone.addError('phone number must have 10 digits ');
+                }
+            }
+            if(ld.Phone==null && ld.Email==null){
+                ld.Phone.addError('Either Phone or Email should be populated');
+                ld.Email.addError('Either Phone or Email should be populated');
+            }
+        }
+    }
+    public static void DomainName(List<Lead> leadList){
+        for(Lead ld:leadList){
+            if(ld.Email!=null){
+                String s=ld.Email;
+                if(s.endsWith('.games')){
+                    ld.Email.addError('email cannot ends with .games');
+                }
+                else if(s.endsWith('.garden')){
+                    ld.Email.addError('email cannot ends with .garden'); 
+                }
+                else if(s.endsWith('.glass')){
+                    ld.Email.addError('email cannot ends with .glass');
+                }
+                else if(s.endsWith('.free')){
+                    ld.Email.addError('email cannot ends with .free');
+                }
+                else if(s.endsWith('.talk')){
+                    ld.Email.addError('email cannot ends with .talk');
+                }
+                if(s.startsWith('info@')){
+                    ld.Email.addError('email cannot starts with info@');
+                }else if(s.startsWith('contact@')){
+                    ld.Email.addError('email cannot starts with contact');
+                }else if(s.startsWith('Career@')){
+                    ld.Email.addError('email cannot starts with Career@');
+                }
+            }
+        }
+    }
+    public static void AppendZ(List<Lead> leadList){
+        for(Lead ld:leadList){
+            if(ld.Email!=null){
+                String EmailOfCurrentRecord=ld.Email;
+                if(EmailOfCurrentRecord.length()<20){
+                    EmailOfCurrentRecord=EmailOfCurrentRecord+'z';
+                    ld.Email=EmailOfCurrentRecord;
+                    System.debug(ld.Email);                
+                }    
+                
+            } 
+        }
+    }
+    public static void CannotContainA(List<Lead> leadList){
+        for (Lead ld : leadList) {
+            if (ld.Email != null) {
+                String str = ld.Email;
+                String str2=str.substring(5, 12);
+                System.debug('str2 '+str2);
+                System.debug('str2 -> '+str2.contains('a'));
+                if (str2.contains('a')) {
+                    ld.Email.addError('Letter a cannot be there between the 5th and 12th character');
+                }
+            }
+        }
+    }
+}
