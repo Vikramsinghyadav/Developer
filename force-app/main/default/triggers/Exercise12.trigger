@@ -1,5 +1,9 @@
-trigger Exercise12 on Opportunity (after insert, after update) {
+trigger OpportunityTrigger on Opportunity (before insert,before update,after insert, after update) {
+    if(Trigger.isBefore && (Trigger.isInsert || Trigger.isUpdate)){
+    	OpportunityController.populateNextStep(Trigger.new,Trigger.oldMap);
+        OpportunityController.closeDateCheck(Trigger.new);
+    }
      if(Trigger.isAfter && (Trigger.isInsert || Trigger.isUpdate)){
-    	OpportunityController.CreateContract(Trigger.new);
+    	OpportunityController.createContract(Trigger.new);
     }
 }

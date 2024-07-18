@@ -1,5 +1,5 @@
 public class LeadController {
-    public static void Country(List<Lead> leadList){
+    public static void country(List<Lead> leadList){
         for(Lead ld:leadList){
             if(ld.country__c=='United States'){
                 if(ld.Phone != null && ld.Phone.length() != 10){
@@ -13,23 +13,19 @@ public class LeadController {
             }
         }
     }
-    public static void DomainName(List<Lead> leadList){
+    public static void domainName(List<Lead> leadList){
         for(Lead ld:leadList){
             if(ld.Email!=null){
                 String s=ld.Email;
                 if(s.endsWith('.games')){
                     ld.Email.addError('email cannot ends with .games');
-                }
-                else if(s.endsWith('.garden')){
+                }else if(s.endsWith('.garden')){
                     ld.Email.addError('email cannot ends with  .garden'); 
-                }
-                else if(s.endsWith('.glass')){
+                }else if(s.endsWith('.glass')){
                     ld.Email.addError('email cannot ends with .glass');
-                }
-                else if(s.endsWith('.free')){
+                }else if(s.endsWith('.free')){
                     ld.Email.addError('email cannot ends with .free');
-                }
-                else if(s.endsWith('.talk')){
+                }else if(s.endsWith('.talk')){
                     ld.Email.addError('email cannot ends with .talk');
                 }
                 if(s.startsWith('info@')){
@@ -55,7 +51,7 @@ public class LeadController {
             } 
         }
     }
-    public static void CannotContainA(List<Lead> leadList){
+    public static void cannotContainA(List<Lead> leadList){
         for (Lead ld : leadList) {
             if (ld.Email != null) {
                 String str = ld.Email;

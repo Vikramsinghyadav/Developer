@@ -1,12 +1,12 @@
 public class OpportunityController {
-    public static void PopulateNextStep(List<Opportunity> oppList,Map<Id,Opportunity> OldMap){
+    public static void populateNextStep(List<Opportunity> oppList,Map<Id,Opportunity> OldMap){
         for(Opportunity op:oppList){
             if(op.StageName=='Closed Won' && OldMap.get(op.id).StageName=='Negotiation/Review'){
                 op.NextStep='Next Step should be populated exercise 7 ';
             }
         }
     }
-    public static void CreateContract(List<Opportunity> oppList){
+    public static void createContract(List<Opportunity> oppList){
         List<Contract> contractsToInsert = new List<Contract>();
         Set<Id> opportunityIds = new Set<Id>();
         for (Opportunity opp : oppList) {
@@ -31,7 +31,7 @@ public class OpportunityController {
             }
         }        
     }
-    public static void CloseDateCheck(List<Opportunity> oppList){
+    public static void closeDateCheck(List<Opportunity> oppList){
         for(Opportunity op:oppList){  
             Date lastDayOfCurrentMonth = Date.today().toStartOfMonth().addMonths(1).addDays(-1);
             System.debug('lastDayOfCurrentMonth '+lastDayOfCurrentMonth);
