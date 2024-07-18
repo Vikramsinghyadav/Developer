@@ -21,7 +21,7 @@ public class LeadController {
                     ld.Email.addError('email cannot ends with .games');
                 }
                 else if(s.endsWith('.garden')){
-                    ld.Email.addError('email cannot ends with .garden'); 
+                    ld.Email.addError('email cannot ends with  .garden'); 
                 }
                 else if(s.endsWith('.glass')){
                     ld.Email.addError('email cannot ends with .glass');
@@ -42,7 +42,7 @@ public class LeadController {
             }
         }
     }
-    public static void AppendZ(List<Lead> leadList){
+    public static void appendZ(List<Lead> leadList){
         for(Lead ld:leadList){
             if(ld.Email!=null){
                 String EmailOfCurrentRecord=ld.Email;

@@ -15,7 +15,6 @@ public class OpportunityController {
                 opportunityIds.add(opp.Id);
             }
         }
-        
         if (!opportunityIds.isEmpty()) {
             List<Opportunity> opportunities = [SELECT Id,Name, AccountId, CloseDate FROM Opportunity WHERE Id IN :opportunityIds];
             
@@ -28,7 +27,6 @@ public class OpportunityController {
                 con.AccountId = opp.AccountId;
                 contractsToInsert.add(con);
             }
-            
             if (!contractsToInsert.isEmpty()) {
                 insert contractsToInsert;
             }
