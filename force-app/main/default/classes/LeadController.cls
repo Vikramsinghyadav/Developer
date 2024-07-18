@@ -91,4 +91,13 @@ public class LeadController {
         insert campaignMembersToInsert;
     }
     }
+    public static void statusUnqualified(List<Lead> leadList) {
+        for(Lead ld:leadList){
+            if(ld.Status=='Unqualified'){
+                if(ld.Reason__c==null){
+                    ld.Reason__c.addError('if status is Unqualified this field should be populated');
+                }
+            }
+        }
+    }
 }
