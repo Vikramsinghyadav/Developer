@@ -3,10 +3,8 @@ public class Exercise15Test {
 
     @isTest
     static void testUserProfileTrigger() {
-        // Query to get the profile ID for 'Inside Sales'
         Profile insideSalesProfile = [SELECT Id FROM Profile WHERE Name = 'Inside Sales' LIMIT 1];
         
-        // Query to get the group (queue) ID for 'Marketing Hot Leads'
         Group marketingHotLeadsQueue = [SELECT Id FROM Group WHERE DeveloperName = 'Marketing_Hot_Leads' AND Type = 'Queue' LIMIT 1];
         
         // Create a new user with the 'Inside Sales' profile
@@ -31,6 +29,4 @@ public class Exercise15Test {
         GroupMember gm = [SELECT Id FROM GroupMember WHERE GroupId = :marketingHotLeadsQueue.Id AND UserOrGroupId = :newUser.Id];
         System.assertNotEquals(null, gm, 'The new user should be added to the Marketing Hot Leads queue.');
     }
-
-
 }
