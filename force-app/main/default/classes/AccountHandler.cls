@@ -14,8 +14,7 @@ public class AccountHandler {
                 AccountIds.add(acc.id);
             }
         }
-        List<Opportunity> oppList=new List<Opportunity>();
-        
+        List<Opportunity> oppList=new List<Opportunity>(); 
         if(!AccountIds.isEmpty()){
             for(Opportunity op:[select id,StageName,CloseDate,Name from Opportunity where AccountId IN :AccountIds]){
                 System.debug(op.Name);

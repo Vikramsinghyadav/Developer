@@ -9,7 +9,6 @@ public class OpportunityController {
     public static void CreateContract(List<Opportunity> oppList){
         List<Contract> contractsToInsert = new List<Contract>();
         Set<Id> opportunityIds = new Set<Id>();
-        
         for (Opportunity opp : oppList) {
             if (opp.StageName == 'Closed Won') {
                 opportunityIds.add(opp.Id);
@@ -33,8 +32,7 @@ public class OpportunityController {
         }        
     }
     public static void CloseDateCheck(List<Opportunity> oppList){
-        for(Opportunity op:oppList){
-            //Date today = Date.today();
+        for(Opportunity op:oppList){  
             Date lastDayOfCurrentMonth = Date.today().toStartOfMonth().addMonths(1).addDays(-1);
             System.debug('lastDayOfCurrentMonth '+lastDayOfCurrentMonth);
             if(op.CloseDate>lastDayOfCurrentMonth){
