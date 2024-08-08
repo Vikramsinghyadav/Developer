@@ -1,5 +1,5 @@
 @isTest
-public class Exercise15Test {
+public class UserControllerTest {
 
     @isTest
     static void testUserProfileTrigger() {
