@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LightningComponentBundle xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>61.0</apiVersion>
+    <isExposed>true</isExposed>
+    <targets>
+    <target>lightning__AppPage</target>
+    <target>lightning__RecordPage</target>
+    <target>lightning__HomePage</target>
+    </targets>
+    <targetConfigs>  
+        <targetConfig targets="lightning__HomePage,lightning__RecordPage">
+            <property name="title" type="String" default="Basic Info" label="Enter the title"/>
+            <property name="showHeader" type="Boolean" label="Show Header"/>
+            <property name="filedsetname" type="String"  default= "set1" label="Select Field Set" datasource="set1,set2"/>
+            <property name="column" type="String"  default= "2" label="select colunm" datasource="1,2"/>
+        </targetConfig>
+    </targetConfigs>
+
+</LightningComponentBundle>
