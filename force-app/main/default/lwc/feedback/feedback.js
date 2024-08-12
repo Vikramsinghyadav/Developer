@@ -26,9 +26,9 @@ export default class ContributionFieldSetViewer extends LightningElement {
     wiredHorizontalFields({ error, data }) {
         if (data) {
             this.horizontalFields = data;
-            console.log(JSON.stringify(this.horizontalFields));
+           // console.log(JSON.stringify(this.horizontalFields));
         } else if (error) {
-            console.error('Error fetching horizontal fields:', error);
+           // console.error('Error fetching horizontal fields:', error);
         }
     }
     
@@ -36,9 +36,9 @@ export default class ContributionFieldSetViewer extends LightningElement {
     wiredVerticalFields({ error, data }) {
         if (data) {
             this.verticalFields = data;
-            console.log('vertical feedback latest '+JSON.stringify(this.verticalFields));
+           // console.log('vertical feedback latest '+JSON.stringify(this.verticalFields));
         } else if (error) {
-            console.error('Error fetching vertical fields:', error);
+           // console.error('Error fetching vertical fields:', error);
         }
     }
     
@@ -46,9 +46,9 @@ export default class ContributionFieldSetViewer extends LightningElement {
     wiredDetailFields({ error, data }) {
         if (data) {
             this.detailFields = data;
-            console.log('details '+JSON.stringify(this.detailFieldSet));
+           // console.log('details '+JSON.stringify(this.detailFieldSet));
         } else if (error) {
-            console.error('Error fetching detail fields:', error);
+           // console.error('Error fetching detail fields:', error);
         }
     }
     
@@ -58,9 +58,9 @@ export default class ContributionFieldSetViewer extends LightningElement {
     @wire(getRecordFeedback)
     wiredFeedback({ error, data }) {
         if (data) {
-            console.log('Wrapper data feedback:'+JSON.stringify(data));
+           // console.log('Wrapper data feedback:'+JSON.stringify(data));
             this.feedbackList = data;
-            console.log('feedlist List-> '+JSON.stringify(this.feedbackList));
+           // console.log('feedlist List-> '+JSON.stringify(this.feedbackList));
             this.error = undefined;
         } else if (error) {
             this.error = error;
@@ -68,7 +68,7 @@ export default class ContributionFieldSetViewer extends LightningElement {
         }
     }
     handleRefresh() {
-        console.log('refresh');
+       // console.log('refresh');
         refreshApex(this.wiredFeedback);
     }
     @track count = 0;
@@ -82,7 +82,7 @@ export default class ContributionFieldSetViewer extends LightningElement {
         }
         
         this.count = uniqueIds.size;
-        console.log('Unique record count: ' + this.count);
+       // console.log('Unique record count: ' + this.count);
     }
    
 }

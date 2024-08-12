@@ -21,7 +21,7 @@ export default class MVPNomineeBasicInfo extends LightningElement {
     wiredFieldSet({ error, data }) {
         if (data) {
             this.fields = data;
-            console.log('fields'+JSON.stringify(this.fields));
+           // console.log('fields'+JSON.stringify(this.fields));
             this.countAndCalculateAverage();
             this.error = undefined;
         } else if (error) {
@@ -37,17 +37,17 @@ export default class MVPNomineeBasicInfo extends LightningElement {
     
         if (this.fields) {
             this.fields.forEach(element => {
-                console.log('Processing element: ', element);
+               // console.log('Processing element: ', element);
                 if(element=='Feedback_Rating_Count__c'){
                     let currentfield=element;
                     getFieldSetData({ fieldSetName: element })
                     .then(data => {
                         if (data) {
                             this.fieldsetdata = data;
-                            console.log('fields ka data'+JSON.stringify(this.fieldsetdata));
+                           // console.log('fields ka data'+JSON.stringify(this.fieldsetdata));
                             if (this.fieldsetdata && this.fieldsetdata.length > 0) {
                                 this.fieldsetdata.forEach(record => {
-                                    console.log('Processing record: ', record);
+                                   // console.log('Processing record: ', record);
                                     if (record.Feedback_Rating_Count__c) {
                                         sum += record.Feedback_Rating_Count__c;
                                         count++;
@@ -57,9 +57,9 @@ export default class MVPNomineeBasicInfo extends LightningElement {
                     
                             this.average = count > 0 ? sum / count : 0;
                     
-                            console.log('Sum of Feedback_Rating_Count__c: ' + sum);
-                            console.log('Record count: ' + count);
-                            console.log('Average Feedback_Rating_Count__c: ' + this.average);
+                           // console.log('Sum of Feedback_Rating_Count__c: ' + sum);
+                            //console.log('Record count: ' + count);
+                            //console.log('Average Feedback_Rating_Count__c: ' + this.average);
                            
                         } else if (error) {
                             this.error = error;
@@ -80,9 +80,9 @@ export default class MVPNomineeBasicInfo extends LightningElement {
         wiredContactId({ error, data }) {
             if (data) {
                 this.contactId = data;
-                console.log(this.contactId);
+               // console.log(this.contactId);
             } else if (error) {
-                console.error('Error fetching contact ID:', error);
+               // console.error('Error fetching contact ID:', error);
                 this.contactId = null;
             }
         } 

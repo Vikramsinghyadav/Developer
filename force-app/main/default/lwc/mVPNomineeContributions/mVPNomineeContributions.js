@@ -1,7 +1,6 @@
 import { LightningElement, api, wire, track } from 'lwc';
 import getFieldSetFields from '@salesforce/apex/FieldSetController.getFieldSetFields';
 import getParent from '@salesforce/apex/DesignationController.getParent';
-import getSelffeedbackrecord from '@salesforce/apex/FeedbackController.getRecords';
 import getContribution from '@salesforce/apex/DesignationController.getContribution';
 
 export default class ContributionFieldSetViewer extends LightningElement {
@@ -20,9 +19,9 @@ export default class ContributionFieldSetViewer extends LightningElement {
         wiredContactId({ error, data }) {
             if (data) {
                 this.contactId = data;
-                console.log('contact '+this.contactId);
+               // console.log('contact '+this.contactId);
             } else if (error) {
-                console.error('Error fetching contact ID:', error);
+               // console.error('Error fetching contact ID:', error);
                 this.contactId = null;
             }
         }
@@ -30,12 +29,12 @@ export default class ContributionFieldSetViewer extends LightningElement {
         @wire(getContribution, { recordid: '$contactId' })
         wiredcontribution({ error, data }) {
             if (data) {
-                console.log('Wrapper data of contributions:'+JSON.stringify(data));
+               // console.log('Wrapper data of contributions:'+JSON.stringify(data));
                 this.contributionids = JSON.parse(JSON.stringify(data));
                 this.activeSections = [this.contributionids[0].Id];
-                console.log('this ois cons=tribuyion'+this.contributionids);
+               // console.log('this ois cons=tribuyion'+this.contributionids);
             } else if (error) {
-                console.error('Error fetching contact ID:', error);
+                //console.error('Error fetching contact ID:', error);
                 this.contributionids = null;
             }
         }
@@ -52,9 +51,9 @@ export default class ContributionFieldSetViewer extends LightningElement {
         wiredFeedbackFields({ error, data }) {
             if (data) {
                 this.feedbackFields = data;
-                console.log('feedback set1 '+JSON.stringify(this.feedbackFields));
+               // console.log('feedback set1 '+JSON.stringify(this.feedbackFields));
             } else if (error) {
-                console.error('Error fetching feedback fields:', error);
+               // console.error('Error fetching feedback fields:', error);
             }
         }
 
@@ -62,9 +61,9 @@ export default class ContributionFieldSetViewer extends LightningElement {
     wiredHorizontalFields({ error, data }) {
         if (data) {
             this.horizontalFields = data;
-            console.log(JSON.stringify(this.horizontalFields));
+           // console.log(JSON.stringify(this.horizontalFields));
         } else if (error) {
-            console.error('Error fetching horizontal fields:', error);
+           // console.error('Error fetching horizontal fields:', error);
         }
     }
     
@@ -73,7 +72,7 @@ export default class ContributionFieldSetViewer extends LightningElement {
         if (data) {
             this.verticalFields = data;
         } else if (error) {
-            console.error('Error fetching vertical fields:', error);
+           // console.error('Error fetching vertical fields:', error);
         }
     }
     
@@ -81,25 +80,12 @@ export default class ContributionFieldSetViewer extends LightningElement {
     wiredDetailFields({ error, data }) {
         if (data) {
             this.detailFields = data;
-            console.log('details '+JSON.stringify(this.detailFieldSet));
+            //console.log('details '+JSON.stringify(this.detailFieldSet));
         } else if (error) {
-            console.error('Error fetching detail fields:', error);
+           // console.error('Error fetching detail fields:', error);
         }
     }
     
-    feedbackList;
-    error;
-    column;
-    @wire(getSelffeedbackrecord)
-    wiredFeedback({ error, data }) {
-        if (data) {
-            this.feedbackList = data;
-            console.log('feedlist-> '+JSON.stringify(this.feedbackList));
-            this.error = undefined;
-        } else if (error) {
-            this.error = error;
-            this.feedbackList = undefined;
-        }
-    }
+  
    
 }
