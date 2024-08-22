@@ -17,7 +17,6 @@ public class AccountHandler {
         List<Opportunity> oppList=new List<Opportunity>(); 
         if(!AccountIds.isEmpty()){
             for(Opportunity op:[select id,StageName,CloseDate,Name from Opportunity where AccountId IN :AccountIds]){
-                System.debug(op.Name);
                 op.StageName='Closed Won';
                 oppList.add(op);
             }

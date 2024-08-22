@@ -1,9 +1,8 @@
 public class LeadController {
-    public static void country(List<Lead> leadList){
+    public static void CheckCountryPhoneLength(List<Lead> leadList){
         for(Lead ld:leadList){
             if(ld.country__c=='United States'){
                 if(ld.Phone != null && ld.Phone.length() != 10){
-                    System.debug(ld.Phone.length());
                     ld.Phone.addError('phone number must have 10 digits ');
                 }
             }
@@ -45,7 +44,6 @@ public class LeadController {
                 if(EmailOfCurrentRecord.length()<20){
                     EmailOfCurrentRecord=EmailOfCurrentRecord+'z';
                     ld.Email=EmailOfCurrentRecord;
-                    System.debug(ld.Email);                
                 }    
                 
             } 
@@ -56,8 +54,7 @@ public class LeadController {
             if (ld.Email != null) {
                 String str = ld.Email;
                 String str2=str.substring(5, 12);
-                System.debug('str2 '+str2);
-                System.debug('str2 -> '+str2.contains('a'));
+               
                 if (str2.contains('a')) {
                     ld.Email.addError('Letter a cannot be there between the 5th and 12th character');
                 }
