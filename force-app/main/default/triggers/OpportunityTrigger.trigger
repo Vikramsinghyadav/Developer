@@ -3,7 +3,7 @@ trigger OpportunityTrigger on Opportunity (before insert,before update,after ins
     	OpportunityController.populateNextStep(Trigger.new,Trigger.oldMap);
         OpportunityController.closeDateCheck(Trigger.new);
     }
-     if(Trigger.isAfter && (Trigger.isInsert || Trigger.isUpdate)){
+     if(Trigger.isAfter && ( Trigger.isUpdate)){
     	OpportunityController.createContract(Trigger.new);
     }
 }

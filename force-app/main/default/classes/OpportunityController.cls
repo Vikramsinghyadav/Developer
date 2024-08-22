@@ -1,19 +1,24 @@
 public class OpportunityController {
-    public static void populateNextStep(List<Opportunity> oppList,Map<Id,Opportunity> OldMap){
-        for(Opportunity op:oppList){
-            if(op.StageName=='Closed Won' && OldMap.get(op.id).StageName=='Negotiation/Review' && op.NextStep!=null){
-                op.NextStep.addError('Next Step should be empty at this point of time');
-            }
-                op.NextStep='Next Step should be populated exercise 7 ';
+    public static void populateNextStep(List<Opportunity> oppList, Map<Id, Opportunity> oldMap) {
+        for (Opportunity op : oppList) {
+            // Check if the Stage is being changed from 'Negotiation/Review' to 'Closed Won'
+            if (op.StageName.equals('Closed Won') && oldMap.get(op.Id).StageName.equals('Negotiation/Review')) {
+                // Check if the 'NextStep' field is empty
+                if (String.isBlank(op.NextStep)) {
+                    op.NextStep.addError('The Next Step field must be populated when moving from Negotiation/Review to Closed Won.');
+                } else {
+                    op.NextStep = 'Next Step should be populated exercise 7';
+                }
             }
         }
     }
+    
     public static void createContract(List<Opportunity> oppList){
         List<Contract> contractsToInsert = new List<Contract>();
         List<Opportunity> opportunities = new List<Opportunity>();
         for (Opportunity opp : oppList) {
             if (opp.StageName == 'Closed Won') {
-                opportunities.add(opp.Id);
+                opportunities.add(opp);
             }
         }
         if (!opportunities.isEmpty()) {
