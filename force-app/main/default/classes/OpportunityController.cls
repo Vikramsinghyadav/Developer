@@ -1,21 +1,22 @@
 public class OpportunityController {
     public static void populateNextStep(List<Opportunity> oppList,Map<Id,Opportunity> OldMap){
         for(Opportunity op:oppList){
-            if(op.StageName=='Closed Won' && OldMap.get(op.id).StageName=='Negotiation/Review'){
+            if(op.StageName=='Closed Won' && OldMap.get(op.id).StageName=='Negotiation/Review' && op.NextStep!=null){
+                op.NextStep.addError('Next Step should be empty at this point of time');
+            }
                 op.NextStep='Next Step should be populated exercise 7 ';
             }
         }
     }
     public static void createContract(List<Opportunity> oppList){
         List<Contract> contractsToInsert = new List<Contract>();
-        Set<Id> opportunityIds = new Set<Id>();
+        List<Opportunity> opportunities = new List<Opportunity>();
         for (Opportunity opp : oppList) {
             if (opp.StageName == 'Closed Won') {
-                opportunityIds.add(opp.Id);
+                opportunities.add(opp.Id);
             }
         }
-        if (!opportunityIds.isEmpty()) {
-            List<Opportunity> opportunities = [SELECT Id,Name, AccountId, CloseDate FROM Opportunity WHERE Id IN :opportunityIds];
+        if (!opportunities.isEmpty()) {
             
             for (Opportunity opp : opportunities) {
                 Contract con = new Contract();
