@@ -34,7 +34,6 @@ public class OpportunityController {
     public static void closeDateCheck(List<Opportunity> oppList){
         for(Opportunity op:oppList){  
             Date lastDayOfCurrentMonth = Date.today().toStartOfMonth().addMonths(1).addDays(-1);
-            System.debug('lastDayOfCurrentMonth '+lastDayOfCurrentMonth);
             if(op.CloseDate>lastDayOfCurrentMonth){
                 op.CloseDate.addError('Close Date sholud not greater than the last date of the current month.');
             }

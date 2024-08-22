@@ -12,7 +12,6 @@ public class OpportunityControllerTest {
             StageName = 'Closed Won',
             CloseDate = System.today()
         );
-        System.debug('testOpportunity '+testOpportunity);
         insert testOpportunity;
         
         // Verify that the contract was created
