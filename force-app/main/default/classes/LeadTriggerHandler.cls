@@ -1,4 +1,4 @@
-public class LeadController {
+public class LeadTriggerHandler {
     public static void CheckCountryPhoneLength(List<Lead> leadList){
         for(Lead ld:leadList){
             if(ld.country__c=='United States' && ld.Phone != null && ld.Phone.length() != 10){

@@ -1,4 +1,4 @@
-public class OpportunityController {
+public class OpportunityTriggerHandler {
     public static void populateNextStep(List<Opportunity> oppList, Map<Id, Opportunity> oldMap) {
         for (Opportunity op : oppList) {
             // Check if the Stage is being changed from 'Negotiation/Review' to 'Closed Won'

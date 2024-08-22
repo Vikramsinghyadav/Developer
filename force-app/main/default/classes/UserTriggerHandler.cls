@@ -1,4 +1,4 @@
-public class UserController {
+public class UserTriggerHandler {
     public static void addIntoQueue (List<User> userList){
         // Query the profile ID for 'Inside Sales'
         Profile insideSalesProfile = [SELECT Id FROM Profile WHERE Name = 'Inside Sales' LIMIT 1];

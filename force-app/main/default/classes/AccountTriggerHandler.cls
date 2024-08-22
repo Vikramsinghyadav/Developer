@@ -1,4 +1,4 @@
-public class AccountHandler {
+public class AccountTriggerHandler {
     public static void startsWith5(List<Account> accList){
         for(Account acc:accList){
             

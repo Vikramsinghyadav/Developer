@@ -1,4 +1,4 @@
-public class TaskController {
+public class TaskTriggerHandler {
     public static void changeOpportunityStage(List<Task> taskList){
         set<Id> oppIds=new Set<Id>();
     for(Task t:taskList){
