@@ -1,0 +1,7 @@
+<design:component>
+    <design:attribute name="recordId" label="Record Id" />
+    <design:attribute name="filedsetname" label="Field Set Name" default="set1" datasource="set1,set2" />
+    <design:attribute name="column" label="Column" default="2" />
+    <design:attribute name="title" label="Card Title" default="Basic Info" />
+    <design:attribute name="showHeader" label="Show Header" default="true" />
+</design:component>

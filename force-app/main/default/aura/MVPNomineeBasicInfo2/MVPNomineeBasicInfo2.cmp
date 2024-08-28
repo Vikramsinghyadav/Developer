@@ -1,0 +1,33 @@
+<aura:component controller="MVPNomineeBasicInfo2" implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId" access="global" >
+	<aura:attribute name="recordId" type="String" />
+    <aura:attribute name="contactId" type="String" />
+    <aura:attribute name="fields" type="List" />
+    <aura:attribute name="fieldsData" type="List" />
+    <aura:attribute name="error" type="String" />
+    <aura:attribute name="column" type="Integer" />
+    <aura:attribute name="averageRating" type="Integer" />
+    <aura:attribute name="filedsetname" type="String" />
+    <aura:attribute name="objectApiName" type="String" default="Contact" />
+    <aura:attribute name="title" type="String" default="Basic Info" />
+    <aura:attribute name="showHeader" type="Boolean" default="true" />
+    
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+    
+    <lightning:card iconName="standard:job_profile" title="{!v.title}">
+        <aura:if isTrue="{!v.showHeader}">
+            <div class="slds-card__header">
+                <h2 class="slds-text-heading_medium">{!v.title}</h2>
+            </div>
+        </aura:if>
+        
+       
+        <lightning:recordForm
+            recordId="{!v.contactId}"
+            objectApiName="{!v.objectApiName}"
+            fields="{!v.fields}"
+            columns="{!v.column}"
+            mode="readonly" />
+            <lightning:input label="Average Feedback Rating" value="{!v.averageRating}" disabled="true" />
+
+    </lightning:card>
+</aura:component>
