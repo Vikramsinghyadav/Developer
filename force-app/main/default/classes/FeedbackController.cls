@@ -1,20 +1,16 @@
 public class FeedbackController {
     @AuraEnabled(cacheable=true)
-    public static List<Feedback__c> getRecords(){
-        List<Feedback__c> FeedbackList=new List<Feedback__c>();
-        FeedbackList=[select id,Nominator__c,Generosity__c,Leadership__c,Expertise__c,Advocacy__c,Name,RecordTypeId from Feedback__c where RecordTypeId = '012NS000000ntwPYAQ'];
-        return FeedbackList;
-    }
-    @AuraEnabled(cacheable=true)
-    public static List<MyWrapperClass> getRecordFeedback(){
+    public static List<MyWrapperClass> getRecordFeedback(String recordTypeName){
+        List<RecordType> recTypeList = [SELECT Id, DeveloperName FROM RecordType WHERE SObjectType = 'Feedback__c' AND DeveloperName = :recordTypeName
+        ];
         List<Feedback__c> FeedbackList=new List<Feedback__c>();
         Map<Integer,List<Feedback__c>> conMapWithYear = new Map<Integer,List<Feedback__c>>();
 
-        FeedbackList=[select id,Date__c,Nominator__c,Nominator__r.Email,Generosity__c,Leadership__c,Expertise__c,Advocacy__c,Name,RecordTypeId from Feedback__c where RecordTypeId = '012NS000000nvMxYAI'];
+        FeedbackList=[select id,Date__c,Nominator__c,Nominator__r.Email,Generosity__c,Leadership__c,Expertise__c,Advocacy__c,Name,RecordTypeId from Feedback__c where RecordTypeId = :recTypeList[0].Id];
         System.debug('FeedbackList '+FeedbackList);
         
         for(Feedback__c con:FeedbackList){
-            Integer yearValue = con.Date__c.year();
+            Integer yearValue = con.Date__c?.year();
             if(conMapWithYear.containsKey(yearValue)){
                 List<Feedback__c> conList2 = conMapWithYear.get(yearValue);
                 conList2.add(con);

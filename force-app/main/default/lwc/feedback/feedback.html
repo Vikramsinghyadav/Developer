@@ -1,49 +1,37 @@
 <template>
     <lightning-card icon-name="standard:job_profile" title="Feedback">
-    <!-- <lightning-button style="display: flex;flex-direction: column;align-items: flex-end;" icon-name="action:refresh" label="Refresh" onclick={handleRefresh}></lightning-button>
-     <b><lightning-layout style="display: flex;flex-direction: column;align-items: flex-end;font-size: larger;">{count}<lightning-icon 
-      icon-name="action:add_relationship" 
-      alternative-text="Connected" 
-      size="xx-small" 
-      title="large size"
-      variant="inverse"
-    ></lightning-icon></lightning-layout></b> -->
-    <template for:each={feedbackList} for:item="con">
-        <div key={con.year}>
-            <!--  onsectiontoggle={handleSectionToggle}-->
-            <lightning-accordion allow-multiple-sections-open active-section-name={activeSections}   >
-                <lightning-accordion-section label={con.year}>
-                    <template for:each ={con.Feedback} for:item="contri">
-                    <div key={contri.id}>
-                    <lightning-record-form
-                    record-id={contri.Id}
-                    object-api-name="Feedback__c"
-                    fields={horizontalFields}
-                    columns="2"
-                    mode="readonly" >
-                    </lightning-record-form>
-                    <lightning-record-form
-                    record-id={contri.Id}
-                    object-api-name="Feedback__c"
-                    fields={verticalFields}
-                    columns="2"
-                    mode="readonly">
-                    </lightning-record-form>
-                    <lightning-record-form
-                    record-id={contri.Id}
-                    object-api-name="Feedback__c"
-                    fields={detailFields}
-                    columns="2"
-                    mode="readonly">
-                    </lightning-record-form>
-                    </div>
-                </template>
-                </lightning-accordion-section>
-   
-            </lightning-accordion>
-        </div>
-</template> 
-
-    
-</lightning-card>
+        <template for:each={feedbackList} for:item="con">
+            <div key={con.year}>
+                <lightning-accordion allow-multiple-sections-open active-section-name={activeSections}   >
+                    <lightning-accordion-section label={con.year}>
+                        <template for:each ={con.Feedback} for:item="contri">
+                            <div key={contri.id}>
+                                <lightning-record-form
+                                    record-id={contri.Id}
+                                    object-api-name="Feedback__c"
+                                    fields={horizontalFields}
+                                    columns="2"
+                                    mode="readonly" >
+                                </lightning-record-form>
+                                <lightning-record-form
+                                    record-id={contri.Id}
+                                    object-api-name="Feedback__c"
+                                    fields={verticalFields}
+                                    columns="2"
+                                    mode="readonly">
+                                </lightning-record-form>
+                                <lightning-record-form
+                                    record-id={contri.Id}
+                                    object-api-name="Feedback__c"
+                                    fields={detailFields}
+                                    columns="2"
+                                    mode="readonly">
+                                </lightning-record-form>
+                            </div>
+                        </template>
+                    </lightning-accordion-section>
+                </lightning-accordion>
+            </div>
+        </template> 
+    </lightning-card>
 </template>

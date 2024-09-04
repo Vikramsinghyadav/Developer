@@ -1,4 +1,4 @@
-import { LightningElement, api, wire, track } from 'lwc';
+import { LightningElement, api, wire } from 'lwc';
 import getFieldSetFields from '@salesforce/apex/FieldSetController.getFieldSetFields';
 import getSelffeedbackrecord from '@salesforce/apex/FeedbackController.getRecordFeedback';
 
@@ -12,9 +12,9 @@ export default class ContributionFieldSetViewer extends LightningElement {
     @api detailFieldSet = 'Detail';
     @api feedbackFieldSet = 'set1';
     @api orderBy = 'ASC';
-    @track contributionids =[]
+    contributionids =[]
  
-        @track feedbackFields = [];
+        feedbackFields = [];
         
         @wire(getFieldSetFields, { objectName: 'Feedback__c', fieldSetName: '$feedbackFieldSet'})
         wiredFeedbackFields({ error, data }) {
@@ -31,7 +31,8 @@ export default class ContributionFieldSetViewer extends LightningElement {
     feedbackList;
     error;
     column;
-    @wire(getSelffeedbackrecord)
+    recName = 'Self_feedback';
+    @wire(getSelffeedbackrecord, {recordTypeName:'$recName'})
     wiredFeedback({ error, data }) {
         if (data) {
             this.feedbackList = data;

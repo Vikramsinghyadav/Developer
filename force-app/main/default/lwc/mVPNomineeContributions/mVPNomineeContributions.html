@@ -1,39 +1,37 @@
 <template>
     <lightning-card title="Contribution" icon-name="standard:poll">
-   <template for:each={contributionids} for:item="con">
+        <template for:each={contributionids} for:item="con">
             <div key={con.year}>
                 <lightning-accordion allow-multiple-sections-open active-section-name={activeSections}   >
                     <lightning-accordion-section label={con.year}>
                         <template for:each ={con.Contributions} for:item="contri">
-                        <div key={contri.id}>
-                        <lightning-record-form
-                        record-id={contri.Id}
-                        object-api-name="Contribution__c"
-                        fields={horizontalFields}
-                        columns="2"
-                        mode="readonly" >
-                        </lightning-record-form>
-                        <lightning-record-form
-                        record-id={contri.Id}
-                        object-api-name="Contribution__c"
-                        fields={verticalFields}
-                        columns="2"
-                        mode="readonly">
-                        </lightning-record-form>
-                        <lightning-record-form
-                        record-id={contri.Id}
-                        object-api-name="Contribution__c"
-                        fields={detailFields}
-                        columns="2"
-                        mode="readonly">
-                        </lightning-record-form>
-                        </div>
-                    </template>
+                            <div key={contri.id}>
+                                <lightning-record-form
+                                        record-id={contri.Id}
+                                        object-api-name="Contribution__c"
+                                        fields={horizontalFields}
+                                        columns="2"
+                                        mode="readonly" >
+                                </lightning-record-form>
+                                <lightning-record-form
+                                        record-id={contri.Id}
+                                        object-api-name="Contribution__c"
+                                        fields={verticalFields}
+                                        columns="2"
+                                        mode="readonly">
+                                </lightning-record-form>
+                                <lightning-record-form
+                                        record-id={contri.Id}
+                                        object-api-name="Contribution__c"
+                                        fields={detailFields}
+                                        columns="2"
+                                        mode="readonly">
+                                </lightning-record-form>
+                            </div>
+                        </template>
                     </lightning-accordion-section>
-       
                 </lightning-accordion>
             </div>
-    </template> 
-  
-</lightning-card>
+        </template> 
+  </lightning-card>
 </template>
