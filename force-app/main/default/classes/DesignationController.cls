@@ -44,8 +44,6 @@ public with sharing class DesignationController {
             // Query to get Contact records based on Contact__c Id
             List<Contact> contactList = [SELECT Feedback_Rating_Count__c, MVP_Count__c, No_Dreamforce_Attended__c, Nomination_Count__c FROM Contact WHERE Id = :contactId];
             
-            // Debug log for inspection
-            System.debug('contactList: ' + contactList);
             
             return contactList;
         } else {

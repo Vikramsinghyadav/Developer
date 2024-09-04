@@ -1,7 +1,6 @@
 public with sharing class FieldSetController {
     @AuraEnabled(cacheable=true)
     public static List<String> getFieldSetFields(String objectName, String fieldSetName) {
-        System.debug('object '+objectName);
         List<String> fieldList = new List<String>();
         Schema.FieldSet fieldSetObj = Schema.getGlobalDescribe().get(objectName).getDescribe().fieldSets.getMap().get(fieldSetName);
         
@@ -10,7 +9,6 @@ public with sharing class FieldSetController {
                 fieldList.add(f.getFieldPath());
             }
         }
-        System.debug(fieldList);
         return fieldList;
     }
     @AuraEnabled(cacheable=true)

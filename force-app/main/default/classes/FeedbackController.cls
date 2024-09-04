@@ -7,7 +7,6 @@ public class FeedbackController {
         Map<Integer,List<Feedback__c>> conMapWithYear = new Map<Integer,List<Feedback__c>>();
 
         FeedbackList=[select id,Date__c,Nominator__c,Nominator__r.Email,Generosity__c,Leadership__c,Expertise__c,Advocacy__c,Name,RecordTypeId from Feedback__c where RecordTypeId = :recTypeList[0].Id];
-        System.debug('FeedbackList '+FeedbackList);
         
         for(Feedback__c con:FeedbackList){
             Integer yearValue = con.Date__c?.year();
