@@ -53,7 +53,9 @@ export default class ContributionFieldSetViewer extends LightningElement {
     @wire(getFieldSetFields, { objectName: 'Contribution__c', fieldSetName: '$horizontalFieldSet' })
     wiredHorizontalFields({ error, data }) {
         if (data) {
+            if(data!=null && data!=''){
             this.horizontalFields = data;
+            }
         } else if (error) {
             console.error('Error fetching horizontal fields:', error);
         }
@@ -62,7 +64,9 @@ export default class ContributionFieldSetViewer extends LightningElement {
     @wire(getFieldSetFields, { objectName: 'Contribution__c', fieldSetName: '$verticalFieldSet' })
     wiredVerticalFields({ error, data }) {
         if (data) {
+            if(data!=null && data!=''){
             this.verticalFields = data;
+            }
         } else if (error) {
            console.error('Error fetching vertical fields:', error);
         }
@@ -71,7 +75,9 @@ export default class ContributionFieldSetViewer extends LightningElement {
     @wire(getFieldSetFields, { objectName: 'Contribution__c', fieldSetName: '$detailFieldSet' })
     wiredDetailFields({ error, data }) {
         if (data) {
+            if(data!=null && data!=''){
             this.detailFields = data;
+            }
         } else if (error) {
             console.error('Error fetching detail fields:', error);
         }

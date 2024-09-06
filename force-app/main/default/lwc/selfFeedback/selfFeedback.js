@@ -20,7 +20,6 @@ export default class ContributionFieldSetViewer extends LightningElement {
         wiredFeedbackFields({ error, data }) {
             if (data) {
                 this.feedbackFields = data;
-                console.log('feedback set1 '+JSON.stringify(this.feedbackFields));
             } else if (error) {
                 console.error('Error fetching feedback fields:', error);
             }
@@ -36,7 +35,6 @@ export default class ContributionFieldSetViewer extends LightningElement {
     wiredFeedback({ error, data }) {
         if (data) {
             this.feedbackList = data;
-            console.log('feedlist data -> '+JSON.stringify(this.feedbackList));
             this.error = undefined;
         } else if (error) {
             this.error = error;

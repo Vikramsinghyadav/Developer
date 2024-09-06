@@ -1,11 +1,12 @@
 import { LightningElement, api, wire } from 'lwc';
 import getFieldSetFields from '@salesforce/apex/FieldSetController.getFieldSetFields';
-import getFieldSetData from '@salesforce/apex/FieldSetController.getFieldSetData';
+import getContactData from '@salesforce/apex/FieldSetController.getContactData';
 import getParent from '@salesforce/apex/DesignationController.getParent';
 
 export default class MVPNomineeBasicInfo extends LightningElement {
     fields = [];
     error;
+
     @api column;
     @api filedsetname;
     @api objectApiName;
@@ -31,36 +32,13 @@ export default class MVPNomineeBasicInfo extends LightningElement {
     fieldsetdata;
 
     countAndCalculateAverage() {
-        let sum = 0;
-        let count = 0;
-
-        if (this.fields) {
-            this.fields.forEach(element => {
-                if (element == 'Feedback_Rating_Count__c') {
-                    let currentfield = element;
-                    getFieldSetData({ fieldSetName: element })
+                        getContactData({ recordid: this.recordId })
                         .then(data => {
                             if (data) {
-                                this.fieldsetdata = data;
-                                if (this.fieldsetdata && this.fieldsetdata.length > 0) {
-                                    this.fieldsetdata.forEach(record => {
-                                        if (record.Feedback_Rating_Count__c) {
-                                            sum += record.Feedback_Rating_Count__c;
-                                            count++;
-                                        }
-                                    });
-                                }
-
-                                this.average = count > 0 ? sum / count : 0;
-
-                            } else if (error) {
-                                this.error = error;
-                                this.fields = undefined;
+                                
+                                this.average=data
                             }
                         });
-                }
-            });
-        }
     }
 
     @wire(getParent, { recordid: '$recordId' })
@@ -68,7 +46,7 @@ export default class MVPNomineeBasicInfo extends LightningElement {
         if (data) {
             this.contactId = data;
         } else if (error) {
-            this.contactId = null;
+            console.error(error);
         }
     }
 
