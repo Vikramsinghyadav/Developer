@@ -1,9 +1,7 @@
 ({
     doInit: function(component, event, helper) {
-        console.log('fire helper recordid:'+ component.get("v.recordId"));
         helper.getContactId(component,helper);
         helper.getFieldSetFields(component);
-    
     },
 
     handleSectionToggle: function(component, event) {

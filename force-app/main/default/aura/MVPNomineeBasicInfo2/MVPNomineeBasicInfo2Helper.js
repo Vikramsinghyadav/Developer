@@ -52,31 +52,15 @@
         $A.enqueueAction(action);
     },
     fetchFieldSetData : function(component) {
-        let action = component.get("c.getFieldSetData");
-        
+        let action = component.get("c.getContactData");
+        action.setParams({
+        recordid: component.get("v.recordId"),
+        });
         
         action.setCallback(this, function(response) {
             let state = response.getState();
             if (state === "SUCCESS") {
-                component.set("v.fieldsData", JSON.stringify(response.getReturnValue()));
-                
-                var data = response.getReturnValue(); // Correct way to assign the list data
-                component.set("v.fieldsData", data);
-                
-                var sum = 0;
-                var count = 0;
-                
-                if (data && data.length > 0) {
-                    data.forEach(function(record) {
-                        if (record.Feedback_Rating_Count__c) {
-                            sum += record.Feedback_Rating_Count__c;
-                            count++;
-                        }
-                    });
-                }
-                
-                var average = count > 0 ? sum / count : 0;
-               component.set("v.averageRating", average);
+                component.set("v.averageRating", response.getReturnValue());
                 
             } else if (state === "ERROR") {
                 let errors = response.getError();

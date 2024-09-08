@@ -1,9 +1,8 @@
 public class mVPNomineeContributions2 {
 @AuraEnabled(cacheable=true)
 public static Id getParent(Id recordid) {
-    System.debug('recordid-> '+recordid);
     // Query to fetch the Contact__c field from Designation__c object based on the given record Id
-    List<Designation__c> desList = [SELECT Contact__c FROM Designation__c WHERE Id = :'a00NS000009JotZYAS' LIMIT 1];
+    List<Designation__c> desList = [SELECT Contact__c FROM Designation__c WHERE Id = :recordid LIMIT 1];
     
     // Initialize contactId to null
     Id contactId = null;
@@ -13,13 +12,11 @@ public static Id getParent(Id recordid) {
         contactId = desList[0].Contact__c;
     }
     
-    System.debug('contactId ' + contactId);
     return contactId;
 }
 
       @AuraEnabled(cacheable=true)
     public static List<MyWrapperClass> getContribution(Id recordid){
-        System.debug('contact id in wrapper '+recordid);
         Map<Integer,List<Contribution__c>> conMapWithYear = new Map<Integer,List<Contribution__c>>();
         List<Contribution__c> conList = [SELECT id,name,Date__c FROM Contribution__c WHERE Contact__c = :recordid ];
         List<String> conIds=new List<String>();
@@ -43,7 +40,6 @@ public static Id getParent(Id recordid) {
             obj.contributions = conMapWithYear.get(i);
             wrapperList.add(obj);
         }
-        System.debug('wrapperList '+wrapperList);
         return wrapperList;
     }
      class MyWrapperClass {
@@ -54,7 +50,6 @@ public static Id getParent(Id recordid) {
     }
 @AuraEnabled(cacheable=true)
 public static List<String> getFieldSetFields(String objectName, String fieldSetName) {
-    System.debug('object '+objectName+'set->> '+fieldSetName);
     List<String> fieldList = new List<String>();
     Schema.FieldSet fieldSetObj = Schema.getGlobalDescribe().get(objectName).getDescribe().fieldSets.getMap().get(fieldSetName);
     
@@ -63,7 +58,6 @@ public static List<String> getFieldSetFields(String objectName, String fieldSetN
             fieldList.add(f.getFieldPath());
         }
     }
-    System.debug(fieldList);
     return fieldList;
 }
 

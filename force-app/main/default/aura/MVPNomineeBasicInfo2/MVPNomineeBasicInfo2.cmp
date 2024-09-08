@@ -2,7 +2,6 @@
 	<aura:attribute name="recordId" type="String" />
     <aura:attribute name="contactId" type="String" />
     <aura:attribute name="fields" type="List" />
-    <aura:attribute name="fieldsData" type="List" />
     <aura:attribute name="error" type="String" />
     <aura:attribute name="column" type="Integer" />
     <aura:attribute name="averageRating" type="Integer" />

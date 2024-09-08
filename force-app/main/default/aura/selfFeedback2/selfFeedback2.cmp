@@ -3,6 +3,8 @@
     <aura:attribute name="recordId" type="String" />
     <aura:attribute name="contactId" type="String" />
     <aura:attribute name="title" type="String" default="Contribution Details" />
+         <aura:attribute name="recordTypeName" type="String" default="Self_feedback" />
+
     <aura:attribute name="horizontalFields" type="List" default="['Name', 'Pillars__c', 'Assessment__c']" />
 
     <aura:attribute name="verticalFields" type="List" default="['Expertise__c', 'Generosity__c', 'Advocacy__c','Leadership__c']"/>
