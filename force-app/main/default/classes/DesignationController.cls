@@ -18,7 +18,7 @@ public with sharing class DesignationController {
         for(Contribution__c con:conList){
             Integer yearValue = con.Date__c.year();
             if(conMapWithYear.containsKey(yearValue)){
-                conMapWithYear.put(yearValue,conMapWithYear.get(yearValue).add(con));
+                conMapWithYear.get(yearValue).add(con);
                 
             }else{
                 conMapWithYear.put(yearValue,new List<Contribution__c>{con});

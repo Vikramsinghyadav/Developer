@@ -12,7 +12,7 @@ public class FeedbackController {
             recordTypeId = recordTypeInfoMap.get(recordTypeName).getRecordTypeId();
         } else {
             // Handle case where the Record Type is not found
-            return null
+            return null;
         }
         List<Feedback__c> FeedbackList=new List<Feedback__c>();
         Map<Integer,List<Feedback__c>> conMapWithYear = new Map<Integer,List<Feedback__c>>();
