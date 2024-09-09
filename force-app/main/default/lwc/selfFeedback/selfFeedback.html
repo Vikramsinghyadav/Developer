@@ -1,0 +1,23 @@
+<template>
+    <lightning-card icon-name="standard:job_profile" title="Self-Feedback">
+        <template for:each={feedbackList} for:item="con">
+            <div key={con.year}>
+                <lightning-accordion allow-multiple-sections-open active-section-name={activeSections}   >
+                    <lightning-accordion-section label={con.year}>
+                        <template for:each ={con.Feedback} for:item="contri">
+                            <div key={contri.id}>
+                                <lightning-record-form
+                                record-id={contri.Id}
+                                object-api-name="Feedback__c"
+                                fields={feedbackFields}
+                                columns="2"
+                                mode="readonly" >
+                                </lightning-record-form>                   
+                            </div>
+                        </template>
+                    </lightning-accordion-section>
+                </lightning-accordion>
+            </div>
+        </template> 
+    </lightning-card>
+</template>
