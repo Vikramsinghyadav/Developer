@@ -8,12 +8,24 @@
     <target>lightning__HomePage</target>
     </targets>
     <targetConfigs>  
-        <targetConfig targets="lightning__HomePage,lightning__RecordPage">
+        <targetConfig targets="lightning__RecordPage">
+            <objects>
+                <object>Designation__c</object>
+            </objects>
             <property name="title" type="String" default="Basic Info" label="Enter the title"/>
             <property name="showHeader" type="Boolean" label="Show Header"/>
             <property name="filedsetname" type="String"  default= "set1" label="Select Field Set" datasource="set1,set2"/>
             <property name="column" type="String"  default= "2" label="select colunm" datasource="1,2"/>
         </targetConfig>
+        
+        <targetConfig targets="lightning__HomePage">
+            <property name="title" type="String" default="Basic Info" label="Enter the title"/>
+            <property name="showHeader" type="Boolean" label="Show Header"/>
+            <property name="filedsetname" type="String"  default= "set1" label="Select Field Set" datasource="set1,set2"/>
+            <property name="column" type="String"  default= "2" label="select colunm" datasource="1,2"/>
+        </targetConfig>
+
     </targetConfigs>
+
 
 </LightningComponentBundle>

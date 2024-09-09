@@ -1,7 +1,7 @@
 public with sharing class FieldSetController {
     @AuraEnabled(cacheable=true)
     public static List<String> getFieldSetFields(String objectName, String fieldSetName) {
-        if(fieldSetName==null || fieldSetName==''){
+        if(fieldSetName.isBlank()){
             return null;
         }
         List<String> fieldList = new List<String>();
