@@ -1,0 +1,22 @@
+<template>
+    <lightning-card icon-name="standard:job_profile" title="Basic Info">
+        <template if:true={showHeader}>
+            <header class={headerClass}>
+                <h2 class="slds-text-heading_medium">{title}</h2>
+            </header>
+        </template>
+        
+        <lightning-record-form
+            record-id={contactId}
+            object-api-name="Contact"
+            fields={fields}
+            columns={column}
+            mode="readonly">
+        </lightning-record-form>
+
+        <div class="slds-m-around_medium">
+            <lightning-formatted-text value="Average Feedback Rating"></lightning-formatted-text><br>
+            <lightning-formatted-number value={average} format-style="decimal"></lightning-formatted-number><hr>
+        </div>
+    </lightning-card>
+</template>
