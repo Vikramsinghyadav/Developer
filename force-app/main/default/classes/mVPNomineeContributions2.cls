@@ -17,11 +17,16 @@ public static Id getParent(Id recordid) {
 
       @AuraEnabled(cacheable=true)
     public static List<MyWrapperClass> getContribution(Id recordid){
+
         Map<Integer,List<Contribution__c>> conMapWithYear = new Map<Integer,List<Contribution__c>>();
+
         List<Contribution__c> conList = [SELECT id,name,Date__c FROM Contribution__c WHERE Contact__c = :recordid ];
+
         List<String> conIds=new List<String>();
+
         for(Contribution__c con:conList){
             Integer yearValue = con.Date__c.year();
+
             if(conMapWithYear.containsKey(yearValue)){
                 List<Contribution__c> conList2 = conMapWithYear.get(yearValue);
                 conList2.add(con);
@@ -34,6 +39,7 @@ public static Id getParent(Id recordid) {
             }
         }
         List<MyWrapperClass> wrapperList = new List<MyWrapperClass>();
+
         for(Integer i:conMapWithYear.keySet()){
             MyWrapperClass obj = new MyWrapperClass();
             obj.year = ''+i+'('+conMapWithYear.get(i).size()+')';
@@ -50,6 +56,7 @@ public static Id getParent(Id recordid) {
     }
 @AuraEnabled(cacheable=true)
 public static List<String> getFieldSetFields(String objectName, String fieldSetName) {
+    
     List<String> fieldList = new List<String>();
     Schema.FieldSet fieldSetObj = Schema.getGlobalDescribe().get(objectName).getDescribe().fieldSets.getMap().get(fieldSetName);
     
