@@ -1,4 +1,4 @@
-<aura:component controller="selfFeedback2" implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global" >
+<aura:component controller="FeedbackController" implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global" >
 	  <!-- Attributes -->
     <aura:attribute name="recordId" type="String" />
     <aura:attribute name="contactId" type="String" />
