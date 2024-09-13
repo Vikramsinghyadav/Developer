@@ -1,0 +1,48 @@
+<aura:component controller="DesignationController"  implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId" access="global">
+    
+    <aura:attribute name="contactId" type="String" />
+    <aura:attribute name="contributionids" type="List" />
+    <aura:attribute name="activeSections" type="List" />
+    <aura:attribute name="horizontalFields" type="List" default="['Name', 'Pillars__c', 'Assessment__c']" />
+
+    <aura:attribute name="verticalFields" type="List" default="['Expertise__c', 'Generosity__c', 'Advocacy__c','Leadership__c']"/>
+    <aura:attribute name="detailFields" type="List" default="['Details__c','Note__c']" />
+    <aura:attribute name="feedbackFields" type="List" />
+    <aura:attribute name="feedbackList" type="List" />
+    <aura:attribute name="error" type="Object" />
+    <aura:attribute name="feedbackFieldSet" type="String" default="set1" />
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+
+    <lightning:card title="Contribution" iconName="standard:poll">
+        <aura:iteration items="{!v.contributionids}" var="con">
+            <div>
+                <lightning:accordion allowMultipleSectionsOpen="true" activeSectionName="{!v.activeSections}">
+                    <lightning:accordionSection label="{!con.year}">
+                        <aura:iteration items="{!con.Contributions}" var="contri">
+                            <div>
+                                <lightning:recordForm
+                                    recordId="{!contri.Id}"
+                                    objectApiName="Contribution__c"
+                                    fields="{!v.horizontalFields}"
+                                    columns="2"
+                                    mode="readonly" />
+                                <lightning:recordForm
+                                    recordId="{!contri.Id}"
+                                    objectApiName="Contribution__c"
+                                    fields="{!v.verticalFields}"
+                                    columns="2"
+                                    mode="readonly" />
+                                <lightning:recordForm
+                                    recordId="{!contri.Id}"
+                                    objectApiName="Contribution__c"
+                                    fields="{!v.detailFields}"
+                                    columns="2"
+                                    mode="readonly" />
+                            </div>
+                        </aura:iteration>
+                    </lightning:accordionSection>
+                </lightning:accordion>
+            </div>
+        </aura:iteration>
+    </lightning:card>
+</aura:component>
