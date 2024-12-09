@@ -1,0 +1,66 @@
+<template>
+    <lightning-card title="related contacts" icon-name="custom:custom103">
+        <table class="slds-table slds-table_cell-buffer slds-table_bordered slds-border_left slds-border_right"
+        aria-labelledby="element-with-table-label other-element-with-table-label">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>FirstName</th>
+                    <th>LastName</th>
+                    <th>Phone</th>
+                    <th>Delete</th>
+                </tr>
+            </thead>
+            <tbody>
+                <template for:each={contactlist} for:item="contact" for:index="index" >
+                    <tr key={contact.Id}>
+                       
+                        <td>
+                            <div ></div>
+                            <lightning-input lwc:if={hidechekbox} type="checkbox" data-index={contact.Id}  onchange={handleSelect} checked={contact.isChecked}>
+
+                            </lightning-input></td>
+                    
+                        <template if:true={contact.Edit}>
+                            <td ><lightning-input value={contact.FirstName} onchange={handleFirstNameChange} data-index={index}></lightning-input></td>
+                        </template>
+                        <template if:false={contact.Edit}>
+                            <td>{contact.FirstName}</td>
+                        </template>
+                        <template if:true={contact.Edit}>
+                            <td ><lightning-input required value={contact.LastName} onchange={handleLastNameChange}  data-fieldname="LastName" data-index={index}></lightning-input></td>
+                        </template>
+                        <template if:false={contact.Edit}>
+                            <td> {contact.LastName} </td>
+                        </template>
+                        <template if:true={contact.Edit}>
+                            <td><lightning-input value={contact.Phone} onchange={handlePhoneChange} data-index={index}></lightning-input></td>
+                        </template>
+                        <template if:false={contact.Edit}>
+                            <td>{contact.Phone} </td>
+                        </template>
+                       
+                        <td><lightning-button label="Deleterecord" onclick={deleterecord}  variant="destructive" value={contact.Id} data-index={index} ></lightning-button></td>
+                       
+                    </tr>
+                   
+                </template>
+             
+            </tbody>
+        </table>
+        <div>
+        <lightning-button label="Addrow" variant="brand" onclick={addRow}></lightning-button>
+        <template lwc:if={ShowSavebutton}>
+        <lightning-button label="SaveNewRecord" variant="success" onclick={saverecord} value={contactlist}></lightning-button>
+    </template>
+        
+        <template lwc:if={ShowEdit}>
+            <lightning-button label={editlabel} variant="brand" onclick={editRow}></lightning-button>
+            </template>
+            <template lwc:if={ShowCancel}>
+              
+        </template>
+    </div>
+        
+    </lightning-card>
+</template>
